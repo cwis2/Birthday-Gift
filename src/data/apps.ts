@@ -26,7 +26,7 @@ export const apps: App3DS[] = Array.from({ length: 30 }, (_, i) => ({
   title: `Placeholder App ${i + 1}`,
   publisher: "Developer",
   icon: "",
-  color: pastels[i % pastels.length],
+  color: pastels[i % pastels.length] ?? "#ccc",
   label: `${String.fromCharCode(65 + (i % 26))}${i >= 26 ? i - 25 : ""}`,
 }));
 

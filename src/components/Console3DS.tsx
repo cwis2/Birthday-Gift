@@ -112,7 +112,8 @@ export function Console3DS() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const map: Record<string, "left" | "right" | "up" | "down"> = { ArrowLeft: "left", ArrowRight: "right", ArrowUp: "up", ArrowDown: "down" };
-      if (map[e.key]) { e.preventDefault(); move(map[e.key]); flash("dpad-" + map[e.key]); }
+      const dir = map[e.key];
+      if (dir) { e.preventDefault(); move(dir); flash("dpad-" + dir); }
       else if (e.key === "Enter" || e.key.toLowerCase() === "a") { e.preventDefault(); flash("A"); open(); }
       else if (e.key.toLowerCase() === "l") { flash("L"); changePage(currentPage - 1); }
       else if (e.key.toLowerCase() === "r") { flash("R"); changePage(currentPage + 1); }
@@ -121,7 +122,7 @@ export function Console3DS() {
     return () => window.removeEventListener("keydown", onKey);
   }, [move, open, changePage, currentPage]);
 
-  const theme = SHELL_THEMES[shellTheme];
+  const theme = SHELL_THEMES[shellTheme] ?? SHELL_THEMES[0]!;
   const vars = { "--shell": theme.base, "--shell-edge": theme.edge } as CSSProperties;
 
   const onSliderDrag = (e: React.PointerEvent<HTMLDivElement>) => {
