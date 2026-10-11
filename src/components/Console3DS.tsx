@@ -185,7 +185,7 @@ export function Console3DS() {
 
           {/* BOTTOM SHELL */}
           <div className="ds-shell ds-shell-bottom">
-            <div className="flex items-start justify-between px-[22px] pt-[30px]">
+            <div className="flex items-start justify-between px-[18px] pt-[30px]">
               {/* Left controls */}
               <div className="flex w-[120px] flex-col items-center gap-[46px] pt-[14px]">
                 <div className="ds-circle-ring"><div className="ds-circle-pad" /></div>
