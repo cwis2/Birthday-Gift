@@ -165,14 +165,14 @@ export function Console3DS() {
                 <Screen w={400} h={240}>
                   <TopScreen app={selectedApp} isLaunching={isLaunching} />
                 </Screen>
-                <div className="flex flex-col items-center gap-3">
-                  <div className="ds-slider-track" onPointerDown={onSliderDrag} role="slider" aria-label="3D depth slider" aria-valuenow={Math.round((1 - slider) * 100)}>
-                    <div className="ds-slider-knob" style={{ top: `${slider * 100}%` }} />
-                  </div>
-                  <span className="ds-tiny-label">3D</span>
-                </div>
+                <Grill />
               </div>
-              <div className="ds-grill-right"><Grill /></div>
+            </div>
+            <div className="ds-slider-wrap">
+              <div className="ds-slider-track" onPointerDown={onSliderDrag} role="slider" aria-label="3D depth slider" aria-valuenow={Math.round((1 - slider) * 100)}>
+                <div className="ds-slider-knob" style={{ top: `${slider * 100}%` }} />
+              </div>
+              <span className="ds-tiny-label">3D</span>
             </div>
           </div>
 
