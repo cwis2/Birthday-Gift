@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Console3DS } from "@/components/Console3DS";
+import { assetUrl } from "@/lib/asset-url";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,7 +22,7 @@ function Index() {
       {/* Ambient background using theme preview art */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-25 blur-xl scale-110 pointer-events-none transition-opacity duration-1000"
-        style={{ backgroundImage: `url('/backgrounds/preview.png')` }}
+        style={{ backgroundImage: `url('${assetUrl("/backgrounds/preview.png")}')` }}
       />
       <div className="absolute inset-0 bg-radial from-transparent via-[#0d0d12]/60 to-[#0d0d12] pointer-events-none" />
       <div className="relative z-10">

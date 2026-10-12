@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import type { App3DS } from "@/data/apps";
 import { SCREEN_THEMES, type ScreenTheme } from "@/data/themes";
 import { useDragScroll } from "@/hooks/useDragScroll";
+import { assetUrl } from "@/lib/asset-url";
 import { AppTile } from "./AppTile";
 import { Chat, Community, Friends, Globe, GridView, HomeWrench, Pencil, SingleView } from "./icons";
 
@@ -202,7 +203,7 @@ export function BottomScreen({
                   A new software title has arrived on your Home Menu:
                 </p>
                 <div className="flex items-center justify-center gap-2.5 bg-white/90 rounded-xl p-2 border border-gray-300 shadow-sm mx-auto mb-2.5 w-full">
-                  <img src="/icons/gift.jpg" alt="Birthday Gift" className="w-8 h-8 rounded-md shadow object-cover" />
+                  <img src={assetUrl("/icons/gift.jpg")} alt="Birthday Gift" className="w-8 h-8 rounded-md shadow object-cover" />
                   <div className="text-left">
                     <div className="text-[11px] font-black text-gray-900 leading-tight">Birthday Gift</div>
                     <div className="text-[9px] font-semibold text-gray-500">by cwis</div>

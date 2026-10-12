@@ -2,6 +2,7 @@
 
 // ── Text content (populate these) ─────────────────────────────────────────────
 type DialogueLine = { speaker: string; text: string };
+import { assetUrl } from "@/lib/asset-url";
 
 export const BYSTANDER_BUBBLES: DialogueLine[] = [
   { speaker: "Godzilla Cat", text: "GRAAAAAAAHHHHHH!!" },
@@ -514,25 +515,25 @@ export function useBirthdayGame(onClose: () => void, isActive = false, onEnvelop
 
     return (
       <div style={{ position:"absolute", inset:0, overflow:"hidden" }}>
-        <img src="/backgrounds/field.png" alt="" style={{ position:"absolute", left:0, top:0, width:"100%", height:"100%", objectFit:"cover" }} />
+        <img src={assetUrl("/backgrounds/field.png")} alt="" style={{ position:"absolute", left:0, top:0, width:"100%", height:"100%", objectFit:"cover" }} />
         {showBystander && (
-          <img src="public/sprites/bystander.png" alt="Bystander"
+          <img src={assetUrl("/sprites/bystander.png")} alt="Bystander"
             style={{ position:"absolute", top: GROUND_Y - SPRITE_H["bystander"] * 90 / 125 - 14, left: bystanderX - 63 - 20, height: SPRITE_H["bystander"], imageRendering:"pixelated" }}
           />
         )}
         {showNahobeho && (
-          <img src="/sprites/nahobeho.png" alt="Nahobeho"
+          <img src={assetUrl("/sprites/nahobeho.png")} alt="Nahobeho"
             style={{ position:"absolute", top: GROUND_Y - SPRITE_H["nahobeho"] - 18, left: nahobehoX - 28, height: SPRITE_H["nahobeho"], imageRendering:"pixelated" }}
           />
         )}
         {showCollector && (
-          <img src="/sprites/collector.png" alt="Collector"
+          <img src={assetUrl("/sprites/collector.png")} alt="Collector"
             style={{ position:"absolute", top: spriteBottom("collector") - 18, left: collectorX - 24, height: SPRITE_H["collector"], imageRendering:"pixelated" }}
           />
         )}
         {showCat && (
           <img
-            src={useCatStill ? "/sprites/cat.png" : "/animations/walk.gif"}
+            src={assetUrl(useCatStill ? "/sprites/cat.png" : "/animations/walk.gif")}
             alt="Shin Godzilla Cat"
             style={{ position:"absolute", top: GROUND_Y - SPRITE_H["cat"] * 376 / 636 - (useCatStill ? 64 : 11), left: catX - SPRITE_H["cat"] * 266 / 636 + 24 - (useCatStill ? 52 : 0), height: SPRITE_H["cat"], imageRendering:"pixelated" }}
           />
@@ -590,7 +591,7 @@ export function useBirthdayGame(onClose: () => void, isActive = false, onEnvelop
       return (
         <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", background:"#111", cursor:"pointer" }} onClick={onClose}>
           <img
-            src="/sprites/letter.png"
+            src={assetUrl("/sprites/letter.png")}
             alt="Letter"
             style={{ transform:`scale(${letterScale})`, maxWidth: GAME_BOT_W - 10, maxHeight: GAME_BOT_H - 10, objectFit:"contain", borderRadius:4, boxShadow:"0 0 20px rgba(255,200,100,0.5)" }}
           />

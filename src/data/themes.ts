@@ -1,3 +1,5 @@
+import { assetUrl } from "@/lib/asset-url";
+
 export interface ScreenTheme {
   id: string;
   name: string;
@@ -12,16 +14,16 @@ export const SCREEN_THEMES: ScreenTheme[] = [
   {
     id: "shin-godzilla",
     name: "Shin Godzilla",
-    topBackground: "/backgrounds/top.png",
-    bottomBackground: "/backgrounds/bottom.png",
-    bgm: "/backgrounds/bgm.ogg",
+    topBackground: assetUrl("/backgrounds/top.png"),
+    bottomBackground: assetUrl("/backgrounds/bottom.png"),
+    bgm: assetUrl("/backgrounds/bgm.ogg"),
   },
   {
     id: "default-grid",
     name: "Classic 3DS",
     topBackground: "", // uses default dark grid
     bottomBackground: "#d8dbe0",
-    bgm: "/backgrounds/bgm.ogg",
+    bgm: assetUrl("/backgrounds/bgm.ogg"),
   },
 ];
 

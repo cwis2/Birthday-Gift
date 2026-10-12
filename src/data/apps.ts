@@ -7,6 +7,8 @@
 //   color: fallback background color for the tile.
 //   label: 1-2 letter label shown on the fallback tile.
 // =====================================================================
+import { assetUrl } from "@/lib/asset-url";
+
 export interface App3DS {
   id: string;
   title: string;
@@ -16,7 +18,7 @@ export interface App3DS {
   label?: string;
 }
 
-export const defaultApps: App3DS[] = [
+export const defaultApps: App3DS[] = ([
   {
     id: "app-birthday-gift",
     title: "Birthday Gift",
@@ -220,7 +222,10 @@ export const defaultApps: App3DS[] = [
     icon: "/icons/rayman.png",
     color: "#ab47bc",
   },
-];
+]).map((app) => ({
+  ...app,
+  icon: app.icon.startsWith("/") ? assetUrl(app.icon) : app.icon,
+}));
 
 export const apps: App3DS[] = [...defaultApps];
 

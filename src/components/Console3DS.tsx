@@ -5,6 +5,7 @@ import { TopScreen } from "./TopScreen";
 import { BottomScreen, COLS, PER_PAGE, type AppDialogData } from "./BottomScreen";
 import { House, Volume, VolumeMute } from "./icons";
 import { useBirthdayGame } from "./BirthdayGame";
+import { assetUrl } from "@/lib/asset-url";
 
 // ---- Configurable constants ----
 export const SHELL_THEMES = [
@@ -116,7 +117,7 @@ export function Console3DS() {
 
   useEffect(() => {
     if (!appDialog || appDialog.isNewApp || appDialog.app?.id === "app-birthday-gift") return;
-    const sound = new Audio("/sounds/Onigiri%20sound%20effect.mp3");
+    const sound = new Audio(assetUrl("/sounds/Onigiri sound effect.mp3"));
     sound.volume = 1;
     sound.play().catch(() => {});
     return () => {
@@ -150,7 +151,7 @@ export function Console3DS() {
   const activeTheme = SCREEN_THEMES[screenTheme] ?? SCREEN_THEMES[0]!;
 
   useEffect(() => {
-    const bgmSrc = activeTheme?.bgm || "/backgrounds/bgm.ogg";
+    const bgmSrc = activeTheme?.bgm || assetUrl("/backgrounds/bgm.ogg");
     if (!audioRef.current) {
       const audio = new Audio(bgmSrc);
       audio.loop = true;
@@ -206,7 +207,7 @@ export function Console3DS() {
         if (app.icon.includes("new app.png")) {
           // First open: change icon, show "new app" popup
           setAppList((prev) =>
-            prev.map((a) => (a.id === "app-birthday-gift" ? { ...a, icon: "/icons/gift.jpg" } : a))
+            prev.map((a) => (a.id === "app-birthday-gift" ? { ...a, icon: assetUrl("/icons/gift.jpg") } : a))
           );
           setAppDialog({
             title: "You have a new app!",
