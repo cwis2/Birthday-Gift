@@ -17,8 +17,16 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="flex h-screen w-screen items-center justify-center overflow-hidden">
-      <Console3DS />
+    <main className="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-[#0d0d12]">
+      {/* Ambient background using theme preview art */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-25 blur-xl scale-110 pointer-events-none transition-opacity duration-1000"
+        style={{ backgroundImage: `url('/backgrounds/preview.png')` }}
+      />
+      <div className="absolute inset-0 bg-radial from-transparent via-[#0d0d12]/60 to-[#0d0d12] pointer-events-none" />
+      <div className="relative z-10">
+        <Console3DS />
+      </div>
     </main>
   );
 }

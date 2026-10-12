@@ -1,11 +1,36 @@
 import type { App3DS } from "@/data/apps";
+import type { ScreenTheme } from "@/data/themes";
 import { AppTile } from "./AppTile";
 import { StatusBar } from "./StatusBar";
 import { Camera } from "./icons";
+import { MessageWindow } from "./MessageWindow";
+import { messageLines } from "@/data/message";
 
-export function TopScreen({ app, isLaunching }: { app: App3DS | undefined; isLaunching: boolean }) {
+export function TopScreen({ app, isLaunching, theme, children, messageOpen, onCloseMessage }: {
+  app: App3DS | undefined;
+  isLaunching: boolean;
+  theme?: ScreenTheme | undefined;
+  children?: React.ReactNode;
+  messageOpen: boolean;
+  onCloseMessage: () => void;
+}) {
   return (
-    <div className="ds-top-screen ds-screen-content" style={{ width: 400, height: 240 }}>
+    <div
+      className="ds-top-screen ds-screen-content"
+      style={{
+        width: 400,
+        height: 240,
+        ...(theme?.topBackground
+          ? {
+              backgroundImage: `url(${theme.topBackground})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }
+          : {}),
+      }}
+    >
+
+      {children ?? <>
       <StatusBar />
 
       <div className="absolute left-1/2 top-[38px] -translate-x-1/2">
@@ -40,6 +65,8 @@ export function TopScreen({ app, isLaunching }: { app: App3DS | undefined; isLau
       </div>
 
       <div className={`ds-flash ${isLaunching ? "ds-flash-on" : ""}`} />
+      </>}
+      <MessageWindow lines={messageLines} isOpen={messageOpen} onClose={onCloseMessage} />
     </div>
   );
 }
