@@ -88,14 +88,15 @@ export const GAME_BOT_H = 240;
 const GROUND_Y = GAME_TOP_H - 16;
 
 // Sprite display heights (px at native resolution)
-const SPRITE_H: Record<string, number> = {
+type SpriteName = "cat" | "bystander" | "nahobeho" | "collector";
+const SPRITE_H: Record<SpriteName, number> = {
   cat:       330,
   bystander: 180,
   nahobeho:  110,
   collector: 105,
 };
 
-function spriteBottom(name: string): number {
+function spriteBottom(name: SpriteName): number {
   return GROUND_Y - (SPRITE_H[name] ?? 80);
 }
 
@@ -559,19 +560,19 @@ export function useBirthdayGame(onClose: () => void, isActive = false, onEnvelop
       );
     }
     if (phase === "bystander-talk") {
-      const line = BYSTANDER_BUBBLES[bubbleIndex];
+      const line = BYSTANDER_BUBBLES[bubbleIndex] ?? { speaker: "Bystander", text: "..." };
       return <div style={{ position:"absolute", inset:0 }}><TextBubble key={bubbleIndex} text={line.text} speakerName={line.speaker} onNext={() => nextBubble(BYSTANDER_BUBBLES, "bystander-exit")} /></div>;
     }
     if (phase === "nahobeho-talk") {
-      const line = NAHOBEHO_BUBBLES[bubbleIndex];
+      const line = NAHOBEHO_BUBBLES[bubbleIndex] ?? { speaker: "Nahobeeho", text: "..." };
       return <div style={{ position:"absolute", inset:0 }}><TextBubble key={bubbleIndex} text={line.text} speakerName={line.speaker} onNext={() => nextBubble(NAHOBEHO_BUBBLES, "nahobeho-exit")} /></div>;
     }
     if (phase === "collector-talk") {
-      const line = COLLECTOR_BUBBLES[bubbleIndex];
+      const line = COLLECTOR_BUBBLES[bubbleIndex] ?? { speaker: "Collector", text: "..." };
       return <div style={{ position:"absolute", inset:0 }}><TextBubble key={bubbleIndex} text={line.text} speakerName={line.speaker} onNext={() => nextBubble(COLLECTOR_BUBBLES, "collector-exit")} /></div>;
     }
     if (phase === "post-collector-talk") {
-      const line = AFTER_COLLECTOR_BUBBLES[bubbleIndex];
+      const line = AFTER_COLLECTOR_BUBBLES[bubbleIndex] ?? { speaker: "Godzilla Cat", text: "..." };
       return <div style={{ position:"absolute", inset:0 }}><TextBubble key={bubbleIndex} text={line.text} speakerName={line.speaker} onNext={() => nextBubble(AFTER_COLLECTOR_BUBBLES, "choice")} /></div>;
     }
     if (phase === "choice") {
@@ -584,7 +585,7 @@ export function useBirthdayGame(onClose: () => void, isActive = false, onEnvelop
       </div>;
     }
     if (phase === "post-choice-talk") {
-      const line = POST_CHOICE_BUBBLES[bubbleIndex];
+      const line = POST_CHOICE_BUBBLES[bubbleIndex] ?? { speaker: "Godzilla Cat", text: "..." };
       return <div style={{ position:"absolute", inset:0 }}><TextBubble key={bubbleIndex} text={line.text} speakerName={line.speaker} onNext={() => nextBubble(POST_CHOICE_BUBBLES, "letter")} /></div>;
     }
     if (phase === "letter") {
